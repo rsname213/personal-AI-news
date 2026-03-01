@@ -63,7 +63,11 @@ Plans:
   3. If the pipeline hangs or runs longer than expected, the GitHub Actions job terminates automatically at 30 minutes
   4. After 60+ days of no repository commits, the scheduled cron workflow is not disabled — the keepalive workflow prevents this
   5. No credentials (Gmail password, API key) are hardcoded anywhere in the repository — all are read from GitHub Secrets at runtime
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 03-01-PLAN.md — Newsletter workflow + .gitignore fix + RSS env-var migration (INFRA-01, INFRA-02, INFRA-03, INFRA-05)
+- [ ] 03-02-PLAN.md — Keepalive workflow + end-to-end manual trigger verification (INFRA-04)
 
 ## Progress
 
@@ -74,4 +78,4 @@ Phases execute in numeric order: 1 → 2 → 3
 |-------|----------------|--------|-----------|
 | 1. Core Pipeline | 5/5 | Complete    | 2026-03-01 |
 | 2. Polish and Resilience | 2/2 | Complete    | 2026-03-01 |
-| 3. Automation | 0/TBD | Not started | - |
+| 3. Automation | 0/2 | Not started | - |
