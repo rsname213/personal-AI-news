@@ -3,7 +3,7 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-03-01T18:57:00.713Z"
+last_updated: "2026-03-01T19:01:49.495Z"
 progress:
   total_phases: 1
   completed_phases: 1
@@ -22,12 +22,12 @@ See: .planning/PROJECT.md (updated 2026-03-01)
 
 ## Current Position
 
-Phase: 1 of 4 (Core Pipeline)
-Plan: 4 of 5 in current phase
-Status: In progress
-Last activity: 2026-03-01 — Completed plan 01-04 (Jinja2 email template, render_email(), send_email() via Gmail SMTP_SSL)
+Phase: 1 of 4 (Core Pipeline) — COMPLETE
+Plan: 5 of 5 in current phase — COMPLETE
+Status: Phase 1 complete — ready for Phase 2
+Last activity: 2026-03-01 — Completed plan 01-05 (orchestrator.py, end-to-end email verified live — 5 articles delivered to rsname213@gmail.com)
 
-Progress: [███░░░░░░░] 20%
+Progress: [██████████] 100% (Phase 1)
 
 ## Performance Metrics
 
@@ -48,6 +48,7 @@ Progress: [███░░░░░░░] 20%
 
 *Updated after each plan completion*
 | Phase 01-core-pipeline P05 | 1min | 1 tasks | 1 files |
+| Phase 01-core-pipeline P05 | 15min | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -75,6 +76,7 @@ Recent decisions affecting current work:
 - [01-02]: FEED_URLS dict (20 sources) is the single place to fix broken feed URLs — no code logic changes needed
 - [Phase 01-05]: Fail-soft per source in collect_all(): any individual fetcher exception logs [WARN] and continues — partial email preferred over no email
 - [Phase 01-05]: Pre-flight _check_env() validates ANTHROPIC_API_KEY, GMAIL_USER, GMAIL_APP_PASSWORD before any network calls — fast, clear failure message
+- [Phase 01-05]: python-dotenv loaded via try/except ImportError — GitHub Actions (env vars injected) and local (.env file) share the same entry point
 
 ### Pending Todos
 
@@ -87,6 +89,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-01T18:51:44Z
-Stopped at: Completed 01-02-PLAN.md (backfill) — fetchers/rss.py (20-source FEED_URLS), fetchers/paul_graham.py, fetchers/gwern.py, fetchers/anthropic_blog.py
+Last session: 2026-03-01
+Stopped at: Completed 01-05-PLAN.md — orchestrator.py pipeline entry point, end-to-end email verified (5 articles, 10,590 bytes HTML delivered to rsname213@gmail.com). Phase 1 fully complete.
 Resume file: None
