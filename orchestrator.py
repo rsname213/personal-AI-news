@@ -15,6 +15,12 @@ Exit codes:
 import os
 import sys
 
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass  # dotenv optional — env vars may already be set (e.g. GitHub Actions)
+
 from fetchers.rss import fetch_all as fetch_rss_all
 from fetchers.paul_graham import fetch as fetch_paul_graham
 from fetchers.gwern import fetch as fetch_gwern

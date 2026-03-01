@@ -8,3 +8,4 @@ httpx==0.28.1
 python-dateutil
 cssutils>=2.9.0
 cssselect>=1.2.0
+python-dotenv>=1.0.0
