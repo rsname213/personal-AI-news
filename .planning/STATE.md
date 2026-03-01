@@ -10,28 +10,28 @@ See: .planning/PROJECT.md (updated 2026-03-01)
 ## Current Position
 
 Phase: 1 of 4 (Core Pipeline)
-Plan: 3 of 5 in current phase
+Plan: 4 of 5 in current phase
 Status: In progress
-Last activity: 2026-03-01 — Completed plan 01-03 (recency filter + Claude Haiku summarizer)
+Last activity: 2026-03-01 — Completed plan 01-04 (Jinja2 email template, render_email(), send_email() via Gmail SMTP_SSL)
 
-Progress: [██░░░░░░░░] 15%
+Progress: [███░░░░░░░] 20%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 3
+- Total plans completed: 4
 - Average duration: ~2 min
-- Total execution time: 0.10 hours
+- Total execution time: 0.13 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 01-core-pipeline | 3 | ~6 min | ~2 min |
+| 01-core-pipeline | 4 | ~8 min | ~2 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (2 min), 01-02 (skipped/wave-1), 01-03 (2 min)
-- Trend: baseline established
+- Last 5 plans: 01-01 (2 min), 01-02 (skipped/wave-1), 01-03 (2 min), 01-04 (2 min)
+- Trend: consistent ~2 min/plan
 
 *Updated after each plan completion*
 
@@ -53,6 +53,12 @@ Recent decisions affecting current work:
 - [01-03]: 25-hour recency window (not 24h) absorbs GitHub Actions cron scheduling delays without silently dropping recent articles
 - [01-03]: System prompt uses cache_control: ephemeral — ~90% cost reduction on repeat calls within same run
 - [01-03]: ANTHROPIC_API_KEY read at call time, not module import — allows module import in tests without real key
+- [01-04]: SMTP_SSL port 465 over STARTTLS/587 — simpler, no explicit starttls() call, sufficient for Gmail App Password
+- [01-04]: GMAIL_USER and GMAIL_APP_PASSWORD read at send_email() call time, not module import — allows import without env vars
+- [01-04]: SECTION_ORDER constant in render.py controls section sequence (Personal Blogs, WSJ, The Information, Anthropic)
+- [01-02]: Gwern scraper uses <a id="YYYY-MM-DD"> attributes for precise date parsing — verified against live gwern.net/blog/index HTML (not year-only approximation as plan skeleton suggested)
+- [01-02]: Anthropic scraper fallback parses date strings ("Feb 27, 2026" regex) from anthropic.com/news card text — enables proper 25h recency filtering
+- [01-02]: FEED_URLS dict (20 sources) is the single place to fix broken feed URLs — no code logic changes needed
 
 ### Pending Todos
 
@@ -65,6 +71,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-01T18:49:51Z
-Stopped at: Completed 01-03-PLAN.md — recency filter (pipeline/filter.py) and Claude Haiku summarizer (pipeline/summarize.py)
+Last session: 2026-03-01T18:51:44Z
+Stopped at: Completed 01-02-PLAN.md (backfill) — fetchers/rss.py (20-source FEED_URLS), fetchers/paul_graham.py, fetchers/gwern.py, fetchers/anthropic_blog.py
 Resume file: None

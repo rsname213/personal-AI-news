@@ -34,17 +34,17 @@
 
 - [ ] **EMAIL-01**: Email renders correctly in Gmail (inline CSS, table-based layout, no unsupported CSS properties)
 - [ ] **EMAIL-02**: Email is visually designed based on Wispr Flow's aesthetic (wisprflow.ai) — clean, minimal, modern
-- [ ] **EMAIL-03**: Email has clear section headers per source category (Personal Blogs, WSJ, The Information, Anthropic)
+- [x] **EMAIL-03**: Email has clear section headers per source category (Personal Blogs, WSJ, The Information, Anthropic)
 - [ ] **EMAIL-04**: Email total size stays under 102KB to prevent Gmail clipping
 - [ ] **EMAIL-05**: Email supports dark mode on Apple Mail and Gmail Mobile via `@media (prefers-color-scheme: dark)`
 - [ ] **EMAIL-06**: If all sources in a section return no new content, that section is suppressed (not shown as empty)
 
 ### Email — Delivery
 
-- [ ] **DEL-01**: Email is sent via Gmail SMTP using an App Password stored in GitHub Secrets
-- [ ] **DEL-02**: Email is addressed to and from the same Gmail account (self-send)
-- [ ] **DEL-03**: Email subject line includes the current date (e.g., "AI Briefing — March 1, 2026")
-- [ ] **DEL-04**: System logs a clear error when Gmail SMTP sending fails
+- [x] **DEL-01**: Email is sent via Gmail SMTP using an App Password stored in GitHub Secrets
+- [x] **DEL-02**: Email is addressed to and from the same Gmail account (self-send)
+- [x] **DEL-03**: Email subject line includes the current date (e.g., "AI Briefing — March 1, 2026")
+- [x] **DEL-04**: System logs a clear error when Gmail SMTP sending fails
 
 ### Infrastructure
 
@@ -109,14 +109,14 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SUMM-04 | Phase 1 | Complete |
 | EMAIL-01 | Phase 3 | Pending |
 | EMAIL-02 | Phase 3 | Pending |
-| EMAIL-03 | Phase 1 | Pending |
+| EMAIL-03 | Phase 1 | Complete |
 | EMAIL-04 | Phase 3 | Pending |
 | EMAIL-05 | Phase 3 | Pending |
 | EMAIL-06 | Phase 3 | Pending |
-| DEL-01 | Phase 1 | Pending |
-| DEL-02 | Phase 1 | Pending |
-| DEL-03 | Phase 1 | Pending |
-| DEL-04 | Phase 1 | Pending |
+| DEL-01 | Phase 1 | Complete |
+| DEL-02 | Phase 1 | Complete |
+| DEL-03 | Phase 1 | Complete |
+| DEL-04 | Phase 1 | Complete |
 | INFRA-01 | Phase 4 | Pending |
 | INFRA-02 | Phase 4 | Pending |
 | INFRA-03 | Phase 4 | Pending |
@@ -130,4 +130,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-03-01*
-*Last updated: 2026-03-01 after roadmap creation (EMAIL-06 moved from Phase 1 to Phase 3)*
+*Last updated: 2026-03-01 after plan 01-04 completion (EMAIL-03, DEL-01, DEL-02, DEL-03, DEL-04 marked complete)*
