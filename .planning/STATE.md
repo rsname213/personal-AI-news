@@ -10,28 +10,28 @@ See: .planning/PROJECT.md (updated 2026-03-01)
 ## Current Position
 
 Phase: 1 of 4 (Core Pipeline)
-Plan: 0 of TBD in current phase
-Status: Ready to plan
-Last activity: 2026-03-01 — Roadmap created; 34 v1 requirements mapped across 4 phases
+Plan: 1 of 5 in current phase
+Status: In progress
+Last activity: 2026-03-01 — Completed plan 01-01 (project foundation: models, deps, directory skeleton)
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [█░░░░░░░░░] 5%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 0
-- Average duration: -
-- Total execution time: 0 hours
+- Total plans completed: 1
+- Average duration: ~2 min
+- Total execution time: 0.03 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| - | - | - | - |
+| 01-core-pipeline | 1 | ~2 min | ~2 min |
 
 **Recent Trend:**
-- Last 5 plans: none yet
-- Trend: -
+- Last 5 plans: 01-01 (2 min)
+- Trend: baseline established
 
 *Updated after each plan completion*
 
@@ -46,6 +46,9 @@ Recent decisions affecting current work:
 - [Init]: Gmail App Password (not OAuth) — simpler, sufficient for single-user self-send
 - [Init]: Claude Haiku via Batch API for summarization — cost-predictable (~$0.05/day)
 - [Init]: Cookie-based scraping for WSJ/The Information — user has subscriptions; isolated to Phase 2
+- [01-01]: Three-stage inheritance chain (RawArticle -> FilteredArticle -> SummarizedArticle) for typed, no-duplication pipeline contracts
+- [01-01]: SummarizedArticle defaults (summary="", summarization_failed=False) allow graceful render on API failure
+- [01-01]: source_category constrained to exactly 4 strings matching email template section headers
 
 ### Pending Todos
 
@@ -58,6 +61,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-01
-Stopped at: Roadmap written; REQUIREMENTS.md traceability section already present from initialization; STATE.md initialized
+Last session: 2026-03-01T18:44:18Z
+Stopped at: Completed 01-01-PLAN.md — project foundation (models.py, requirements.txt, directory skeleton)
 Resume file: None

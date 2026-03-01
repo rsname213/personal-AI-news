@@ -91,16 +91,16 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| PIPE-01 | Phase 1 | Pending |
+| PIPE-01 | Phase 1 | In progress (01-01: foundation) |
 | PIPE-02 | Phase 1 | Pending |
 | PIPE-03 | Phase 1 | Pending |
-| PIPE-04 | Phase 1 | Pending |
+| PIPE-04 | Phase 1 | In progress (01-01: foundation) |
 | PIPE-05 | Phase 3 | Pending |
 | RSS-01 | Phase 1 | Pending |
 | RSS-02 | Phase 1 | Pending |
 | RSS-03 | Phase 1 | Pending |
 | RSS-04 | Phase 1 | Pending |
-| RSS-05 | Phase 1 | Pending |
+| RSS-05 | Phase 1 | In progress (01-01: foundation) |
 | RSS-06 | Phase 1 | Pending |
 | RSS-07 | Phase 1 | Pending |
 | SUMM-01 | Phase 1 | Pending |

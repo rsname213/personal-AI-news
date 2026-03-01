@@ -31,7 +31,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 5 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Project foundation: models.py, requirements.txt, directory skeleton
+- [x] 01-01-PLAN.md — Project foundation: models.py, requirements.txt, directory skeleton
 - [ ] 01-02-PLAN.md — Content fetchers: RSS (20 sources), Paul Graham, Gwern, Anthropic
 - [ ] 01-03-PLAN.md — Pipeline stages: recency filter and Claude Haiku summarizer
 - [ ] 01-04-PLAN.md — Email output: Jinja2 template, premailer renderer, Gmail SMTP sender
@@ -68,6 +68,6 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Core Pipeline | 0/5 | Planned | - |
+| 1. Core Pipeline | 1/5 | In progress | - |
 | 2. Polish and Resilience | 0/TBD | Not started | - |
 | 3. Automation | 0/TBD | Not started | - |
