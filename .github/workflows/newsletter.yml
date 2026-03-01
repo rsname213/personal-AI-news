@@ -1,0 +1,73 @@
+# .github/workflows/newsletter.yml
+# Runs the AI newsletter pipeline daily at 12:00 UTC (7am EST / 8am EDT).
+# Manual trigger available via workflow_dispatch (Actions tab or gh CLI).
+#
+# Sources:
+#   https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule
+#   https://github.com/marketplace/actions/setup-python (v5 with cache: pip)
+#   https://github.com/marketplace/actions/git-auto-commit (v7)
+
+name: AI Newsletter
+
+on:
+  schedule:
+    - cron: '0 12 * * *'
+    # 12:00 UTC = 7am EST (Nov–Mar) / 8am EDT (Mar–Nov).
+    # GitHub Actions cron runs in UTC only — no timezone parameter.
+    # Cron may fire up to 60 min late under peak load; the 25h recency window in
+    # filter_articles() already absorbs this delay (see STATE.md decision [01-03]).
+  workflow_dispatch:
+    # Adds a "Run workflow" button in the Actions tab. No inputs required.
+
+permissions:
+  contents: write
+  # Required for stefanzweifel/git-auto-commit-action to push .seen_urls.
+  # Without this, git push returns 403 from the default read-only GITHUB_TOKEN.
+
+jobs:
+  send-newsletter:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    # Kills runaway jobs at 30 minutes per INFRA-03.
+    # Sequential Claude API calls (not Batch) keep the run well under this ceiling.
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+          # Caches ~/.cache/pip, keyed to requirements.txt hash.
+          # Cache is restored at job start and saved on job completion.
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run newsletter pipeline
+        env:
+          # Secrets mapped to env vars at step level only (not job level).
+          # Step-level env limits secret exposure to this step only — not to
+          # third-party actions like git-auto-commit-action.
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          # RSS URLs stored as env vars per INFRA-05 — not hardcoded in Python.
+          # fetchers/rss.py reads these via os.environ.get() with hardcoded fallbacks.
+          WSJ_RSS_URL: https://feeds.a.wsj.com/rss/RSSWSJD.xml
+          THE_INFO_RSS_URL: https://www.theinformation.com/feed
+        run: python orchestrator.py
+
+      - name: Commit updated .seen_urls
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: 'chore: update seen URLs [skip ci]'
+          file_pattern: '.seen_urls'
+          # [skip ci] prevents this commit from triggering another workflow run
+          # (avoids double-send). file_pattern restricts commits to .seen_urls
+          # only — never accidentally commits .env or other files.
+          # Action is a no-op if .seen_urls has not changed (0 new articles).
