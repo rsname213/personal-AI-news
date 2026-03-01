@@ -48,11 +48,11 @@
 
 ### Infrastructure
 
-- [ ] **INFRA-01**: Full pipeline runs automatically via GitHub Actions on a daily cron at 12:00 UTC (7am EST / 8am EDT)
-- [ ] **INFRA-02**: Pipeline can be triggered manually via `workflow_dispatch` for testing without waiting for cron
-- [ ] **INFRA-03**: GitHub Actions workflow includes a 30-minute timeout to prevent runaway jobs
-- [ ] **INFRA-04**: A GitHub Actions keepalive workflow prevents the cron from being disabled after 60 days of repo inactivity
-- [ ] **INFRA-05**: All secrets (GMAIL_USER, GMAIL_APP_PASSWORD, ANTHROPIC_API_KEY) are stored as GitHub Secrets; RSS URLs stored as environment variables — nothing hardcoded
+- [x] **INFRA-01**: Full pipeline runs automatically via GitHub Actions on a daily cron at 12:00 UTC (7am EST / 8am EDT)
+- [x] **INFRA-02**: Pipeline can be triggered manually via `workflow_dispatch` for testing without waiting for cron
+- [x] **INFRA-03**: GitHub Actions workflow includes a 30-minute timeout to prevent runaway jobs
+- [x] **INFRA-04**: A GitHub Actions keepalive workflow prevents the cron from being disabled after 60 days of repo inactivity
+- [x] **INFRA-05**: All secrets (GMAIL_USER, GMAIL_APP_PASSWORD, ANTHROPIC_API_KEY) are stored as GitHub Secrets; RSS URLs stored as environment variables — nothing hardcoded
 
 ## v2 Requirements
 
@@ -117,11 +117,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | DEL-02 | Phase 1 | Complete |
 | DEL-03 | Phase 1 | Complete |
 | DEL-04 | Phase 1 | Complete |
-| INFRA-01 | Phase 4 | Pending |
-| INFRA-02 | Phase 4 | Pending |
-| INFRA-03 | Phase 4 | Pending |
-| INFRA-04 | Phase 4 | Pending |
-| INFRA-05 | Phase 4 | Pending |
+| INFRA-01 | Phase 4 | Complete |
+| INFRA-02 | Phase 4 | Complete |
+| INFRA-03 | Phase 4 | Complete |
+| INFRA-04 | Phase 4 | Complete |
+| INFRA-05 | Phase 4 | Complete |
 
 **Coverage:**
 - v1 requirements: 32 total
