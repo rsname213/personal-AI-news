@@ -11,7 +11,7 @@
 - [x] **PIPE-02**: System filters out any content older than 24 hours from time of run
 - [x] **PIPE-03**: System caps output at 5 items per source section to keep email scannable
 - [x] **PIPE-04**: System degrades gracefully per source — a failed source produces an empty section, never blocks the email
-- [ ] **PIPE-05**: System deduplicates content so the same article never appears twice across consecutive runs
+- [x] **PIPE-05**: System deduplicates content so the same article never appears twice across consecutive runs
 
 ### Sources — RSS Feeds
 
@@ -95,7 +95,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | PIPE-02 | Phase 1 | Complete |
 | PIPE-03 | Phase 1 | Complete |
 | PIPE-04 | Phase 1 | In progress (01-01: foundation) |
-| PIPE-05 | Phase 3 | Pending |
+| PIPE-05 | Phase 2 | Complete |
 | RSS-01 | Phase 1 | Complete |
 | RSS-02 | Phase 1 | Complete |
 | RSS-03 | Phase 1 | Complete |

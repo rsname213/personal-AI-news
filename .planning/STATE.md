@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-03-01T19:07:22.541Z"
+last_updated: "2026-03-01T19:29:00Z"
 progress:
-  total_phases: 1
+  total_phases: 2
   completed_phases: 1
-  total_plans: 5
-  completed_plans: 5
+  total_plans: 9
+  completed_plans: 6
 ---
 
 # Project State
@@ -22,12 +22,12 @@ See: .planning/PROJECT.md (updated 2026-03-01)
 
 ## Current Position
 
-Phase: 1 of 4 (Core Pipeline) — COMPLETE
-Plan: 5 of 5 in current phase — COMPLETE
-Status: Phase 1 complete — ready for Phase 2
-Last activity: 2026-03-01 — Completed plan 01-05 (orchestrator.py, end-to-end email verified live — 5 articles delivered to rsname213@gmail.com)
+Phase: 2 of 4 (Polish and Resilience) — IN PROGRESS
+Plan: 1 of 4 in current phase — COMPLETE (02-01 done)
+Status: Phase 2 in progress — deduplication shipped
+Last activity: 2026-03-01 — Completed plan 02-01 (pipeline/deduplicate.py, URL deduplication wired into orchestrator)
 
-Progress: [██████████] 100% (Phase 1)
+Progress: [██████████░░░░░░░░░░] 67% (6/9 plans complete)
 
 ## Performance Metrics
 
@@ -49,6 +49,7 @@ Progress: [██████████] 100% (Phase 1)
 *Updated after each plan completion*
 | Phase 01-core-pipeline P05 | 1min | 1 tasks | 1 files |
 | Phase 01-core-pipeline P05 | 15min | 2 tasks | 2 files |
+| Phase 02-polish-and-resilience P01 | 2min | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -77,6 +78,10 @@ Recent decisions affecting current work:
 - [Phase 01-05]: Fail-soft per source in collect_all(): any individual fetcher exception logs [WARN] and continues — partial email preferred over no email
 - [Phase 01-05]: Pre-flight _check_env() validates ANTHROPIC_API_KEY, GMAIL_USER, GMAIL_APP_PASSWORD before any network calls — fast, clear failure message
 - [Phase 01-05]: python-dotenv loaded via try/except ImportError — GitHub Actions (env vars injected) and local (.env file) share the same entry point
+- [02-01]: save_seen_urls called only after send_email() returns — natural exception propagation prevents false-marking on SMTP failure (no try/except needed)
+- [02-01]: UTM_PARAMS set strips utm_source/medium/campaign/term/content; non-UTM params sorted for stable normalized form
+- [02-01]: SEEN_URLS_PATH derived from __file__ so module resolves project root from any working directory
+- [02-01]: 7-day retention window with inclusive cutoff (entries aged exactly 7 days are kept)
 
 ### Pending Todos
 
@@ -90,5 +95,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-01
-Stopped at: Completed 01-05-PLAN.md — orchestrator.py pipeline entry point, end-to-end email verified (5 articles, 10,590 bytes HTML delivered to rsname213@gmail.com). Phase 1 fully complete.
+Stopped at: Completed 02-01-PLAN.md — pipeline/deduplicate.py with 26 passing TDD tests, orchestrator Stage 2b wired (filter_duplicates after filter, save_seen_urls after send_email success).
 Resume file: None

@@ -35,7 +35,7 @@ Plans:
 - [x] 01-02-PLAN.md — Content fetchers: RSS (20 sources), Paul Graham, Gwern, Anthropic
 - [x] 01-03-PLAN.md — Pipeline stages: recency filter and Claude Haiku summarizer
 - [x] 01-04-PLAN.md — Email output: Jinja2 template, premailer renderer, Gmail SMTP sender
-- [ ] 01-05-PLAN.md — Orchestrator: wires all stages end-to-end, verified by live email delivery
+- [x] 01-05-PLAN.md — Orchestrator: wires all stages end-to-end, verified by live email delivery
 
 ### Phase 2: Polish and Resilience
 **Goal**: The email is visually polished, never duplicates articles seen in recent runs, suppresses empty sections, and renders correctly in Gmail including dark mode
@@ -50,7 +50,7 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — Deduplication module + orchestrator wiring (PIPE-05)
+- [x] 02-01-PLAN.md — Deduplication module + orchestrator wiring (PIPE-05)
 - [ ] 02-02-PLAN.md — Wispr Flow email redesign + dark mode + premailer fix (EMAIL-01, EMAIL-02, EMAIL-04, EMAIL-05, EMAIL-06)
 
 ### Phase 3: Automation
@@ -73,5 +73,5 @@ Phases execute in numeric order: 1 → 2 → 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Core Pipeline | 5/5 | Complete    | 2026-03-01 |
-| 2. Polish and Resilience | 0/2 | Not started | - |
+| 2. Polish and Resilience | 1/2 | In progress | - |
 | 3. Automation | 0/TBD | Not started | - |
