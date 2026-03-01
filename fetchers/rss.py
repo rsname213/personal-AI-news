@@ -10,6 +10,7 @@ Feed URLs are MEDIUM confidence — personal bloggers may have moved platforms.
 Fix a bad URL directly in FEED_URLS without touching any code logic.
 """
 import hashlib
+import os
 from datetime import datetime, timezone, timedelta
 
 import feedparser
@@ -41,8 +42,8 @@ FEED_URLS: dict[str, tuple[str, str]] = {
     "Scott Alexander": ("https://astralcodexten.substack.com/feed/", "Personal Blogs"),
     "Tom Tunguz": ("https://tomtunguz.com/feed/", "Personal Blogs"),
     # News Sources
-    "WSJ": ("https://feeds.a.wsj.com/rss/RSSWSJD.xml", "WSJ"),
-    "The Information": ("https://www.theinformation.com/feed", "The Information"),
+    "WSJ": (os.environ.get("WSJ_RSS_URL", "https://feeds.a.wsj.com/rss/RSSWSJD.xml"), "WSJ"),
+    "The Information": (os.environ.get("THE_INFO_RSS_URL", "https://www.theinformation.com/feed"), "The Information"),
 }
 
 
