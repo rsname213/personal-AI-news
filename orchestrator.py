@@ -27,6 +27,10 @@ from fetchers.gwern import fetch as fetch_gwern
 from fetchers.anthropic_blog import fetch as fetch_anthropic
 
 from pipeline.filter import filter_articles
+from pipeline.deduplicate import (
+    load_seen_urls, save_seen_urls, purge_old_entries,
+    filter_duplicates, mark_as_seen,
+)
 from pipeline.summarize import summarize_articles
 from pipeline.render import render_email
 from pipeline.send import send_email, build_subject
@@ -89,6 +93,15 @@ def main() -> None:
     filtered = filter_articles(raw_articles)
     print(f"[OK] Articles after filter: {len(filtered)}")
 
+    # Stage 2b: Deduplicate — remove articles seen in last 7 days
+    print("\n[Stage 2b] Deduplicating against seen URLs...")
+    seen = purge_old_entries(load_seen_urls())
+    filtered, dupes = filter_duplicates(filtered, seen)
+    if dupes:
+        print(f"[OK] Dedup: {len(dupes)} duplicate(s) removed, {len(filtered)} article(s) remain")
+    else:
+        print(f"[OK] Dedup: no duplicates found, {len(filtered)} article(s) proceed")
+
     if not filtered:
         print("[WARN] No articles passed the filter — sending empty digest")
         # Continue — send the email even if empty (subject + date still useful for monitoring)
@@ -108,6 +121,11 @@ def main() -> None:
     print("\n[Stage 5] Sending via Gmail SMTP...")
     subject = build_subject()
     send_email(subject, html_body, text_body)
+
+    # Update seen URLs — only after successful send to avoid false-marking on SMTP failure
+    seen = mark_as_seen(summarized, seen)
+    save_seen_urls(seen)
+    print(f"[OK] Seen URLs updated ({len(seen)} total entries)")
 
     print("\n" + "=" * 50)
     print("Pipeline complete.")

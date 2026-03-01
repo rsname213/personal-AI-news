@@ -1,6 +1,9 @@
 # Secrets — never commit
 .env
 
+# Deduplication state — local runtime file, not committed
+.seen_urls
+
 # Python
 __pycache__/
 *.pyc
