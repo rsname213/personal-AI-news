@@ -7,10 +7,10 @@
 
 ### Pipeline
 
-- [ ] **PIPE-01**: System fetches content from all sources once per day and produces a single email output
+- [x] **PIPE-01**: System fetches content from all sources once per day and produces a single email output
 - [x] **PIPE-02**: System filters out any content older than 24 hours from time of run
 - [x] **PIPE-03**: System caps output at 5 items per source section to keep email scannable
-- [ ] **PIPE-04**: System degrades gracefully per source — a failed source produces an empty section, never blocks the email
+- [x] **PIPE-04**: System degrades gracefully per source — a failed source produces an empty section, never blocks the email
 - [ ] **PIPE-05**: System deduplicates content so the same article never appears twice across consecutive runs
 
 ### Sources — RSS Feeds

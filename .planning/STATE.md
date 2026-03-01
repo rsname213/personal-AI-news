@@ -1,3 +1,16 @@
+---
+gsd_state_version: 1.0
+milestone: v1.0
+milestone_name: milestone
+status: unknown
+last_updated: "2026-03-01T18:57:00.713Z"
+progress:
+  total_phases: 1
+  completed_phases: 1
+  total_plans: 5
+  completed_plans: 5
+---
+
 # Project State
 
 ## Project Reference
@@ -34,6 +47,7 @@ Progress: [███░░░░░░░] 20%
 - Trend: consistent ~2 min/plan
 
 *Updated after each plan completion*
+| Phase 01-core-pipeline P05 | 1min | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -59,6 +73,8 @@ Recent decisions affecting current work:
 - [01-02]: Gwern scraper uses <a id="YYYY-MM-DD"> attributes for precise date parsing — verified against live gwern.net/blog/index HTML (not year-only approximation as plan skeleton suggested)
 - [01-02]: Anthropic scraper fallback parses date strings ("Feb 27, 2026" regex) from anthropic.com/news card text — enables proper 25h recency filtering
 - [01-02]: FEED_URLS dict (20 sources) is the single place to fix broken feed URLs — no code logic changes needed
+- [Phase 01-05]: Fail-soft per source in collect_all(): any individual fetcher exception logs [WARN] and continues — partial email preferred over no email
+- [Phase 01-05]: Pre-flight _check_env() validates ANTHROPIC_API_KEY, GMAIL_USER, GMAIL_APP_PASSWORD before any network calls — fast, clear failure message
 
 ### Pending Todos
 
