@@ -47,7 +47,11 @@ Plans:
   3. The email renders with the Wispr Flow-inspired visual design (clean, minimal, table-based layout) in Gmail desktop and Gmail Mobile without broken styles
   4. The total email HTML size stays under 102KB (Gmail clip threshold)
   5. On Apple Mail and Gmail Mobile, the email renders correctly in both light mode and dark mode via the prefers-color-scheme media query
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Deduplication module + orchestrator wiring (PIPE-05)
+- [ ] 02-02-PLAN.md — Wispr Flow email redesign + dark mode + premailer fix (EMAIL-01, EMAIL-02, EMAIL-04, EMAIL-05, EMAIL-06)
 
 ### Phase 3: Automation
 **Goal**: The pipeline runs automatically every morning at 7am ET via GitHub Actions, can be triggered manually for testing, times out if stuck, stays active indefinitely, and uses only GitHub Secrets for all credentials
@@ -69,5 +73,5 @@ Phases execute in numeric order: 1 → 2 → 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Core Pipeline | 5/5 | Complete    | 2026-03-01 |
-| 2. Polish and Resilience | 0/TBD | Not started | - |
+| 2. Polish and Resilience | 0/2 | Not started | - |
 | 3. Automation | 0/TBD | Not started | - |
