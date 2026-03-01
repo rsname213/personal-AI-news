@@ -20,13 +20,8 @@
 - [ ] **RSS-03**: System handles Gwern Branwen's missing RSS via a custom HTML scraper
 - [ ] **RSS-04**: System fetches new posts from Anthropic's official news/blog channel
 - [ ] **RSS-05**: System logs a warning per source when a feed is unavailable, without crashing
-
-### Sources — Authenticated Paywalled
-
-- [ ] **PAY-01**: System fetches top articles from WSJ using subscriber cookies stored in GitHub Secrets
-- [ ] **PAY-02**: System fetches top articles from The Information using subscriber cookies stored in GitHub Secrets
-- [ ] **PAY-03**: System detects expired/invalid cookies (403 response) and logs a clear warning, falling back to empty section
-- [ ] **PAY-04**: Subscriber cookie strings can be rotated by updating a single GitHub Secret (no code changes required)
+- [ ] **RSS-06**: System fetches top articles from WSJ via public RSS feed (https://feeds.a.wsj.com/rss/RSSWSJD.xml) — headline, teaser, and direct link included; links open paywall-free in the WSJ app
+- [ ] **RSS-07**: System fetches top articles from The Information via subscriber RSS feed (https://www.theinformation.com/feed) — headline, teaser, and direct link included
 
 ### Summarization
 
@@ -57,7 +52,7 @@
 - [ ] **INFRA-02**: Pipeline can be triggered manually via `workflow_dispatch` for testing without waiting for cron
 - [ ] **INFRA-03**: GitHub Actions workflow includes a 30-minute timeout to prevent runaway jobs
 - [ ] **INFRA-04**: A GitHub Actions keepalive workflow prevents the cron from being disabled after 60 days of repo inactivity
-- [ ] **INFRA-05**: All secrets (GMAIL_USER, GMAIL_APP_PASSWORD, WSJ_COOKIES, THE_INFO_COOKIES, ANTHROPIC_API_KEY) are stored as GitHub Secrets, never hardcoded
+- [ ] **INFRA-05**: All secrets (GMAIL_USER, GMAIL_APP_PASSWORD, ANTHROPIC_API_KEY) are stored as GitHub Secrets; RSS URLs stored as environment variables — nothing hardcoded
 
 ## v2 Requirements
 
@@ -106,10 +101,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | RSS-03 | Phase 1 | Pending |
 | RSS-04 | Phase 1 | Pending |
 | RSS-05 | Phase 1 | Pending |
-| PAY-01 | Phase 2 | Pending |
-| PAY-02 | Phase 2 | Pending |
-| PAY-03 | Phase 2 | Pending |
-| PAY-04 | Phase 2 | Pending |
+| RSS-06 | Phase 1 | Pending |
+| RSS-07 | Phase 1 | Pending |
 | SUMM-01 | Phase 1 | Pending |
 | SUMM-02 | Phase 1 | Pending |
 | SUMM-03 | Phase 1 | Pending |
@@ -131,8 +124,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | INFRA-05 | Phase 4 | Pending |
 
 **Coverage:**
-- v1 requirements: 34 total
-- Mapped to phases: 34
+- v1 requirements: 32 total
+- Mapped to phases: 32
 - Unmapped: 0
 
 ---
