@@ -119,7 +119,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | EMAIL-03 | Phase 1 | Pending |
 | EMAIL-04 | Phase 3 | Pending |
 | EMAIL-05 | Phase 3 | Pending |
-| EMAIL-06 | Phase 1 | Pending |
+| EMAIL-06 | Phase 3 | Pending |
 | DEL-01 | Phase 1 | Pending |
 | DEL-02 | Phase 1 | Pending |
 | DEL-03 | Phase 1 | Pending |
@@ -133,8 +133,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 **Coverage:**
 - v1 requirements: 34 total
 - Mapped to phases: 34
-- Unmapped: 0 ✓
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-01*
-*Last updated: 2026-03-01 after initial definition*
+*Last updated: 2026-03-01 after roadmap creation (EMAIL-06 moved from Phase 1 to Phase 3)*
