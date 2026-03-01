@@ -28,7 +28,14 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. If a specific RSS feed is unavailable (e.g., network error), the pipeline completes and sends the email with that source omitted — no crash, a warning logged
   4. No article older than 24 hours appears in the email; each source section is capped at 5 items
   5. The email subject line includes the current date (e.g., "AI Briefing — March 1, 2026")
-**Plans**: TBD
+**Plans**: 5 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Project foundation: models.py, requirements.txt, directory skeleton
+- [ ] 01-02-PLAN.md — Content fetchers: RSS (20 sources), Paul Graham, Gwern, Anthropic
+- [ ] 01-03-PLAN.md — Pipeline stages: recency filter and Claude Haiku summarizer
+- [ ] 01-04-PLAN.md — Email output: Jinja2 template, premailer renderer, Gmail SMTP sender
+- [ ] 01-05-PLAN.md — Orchestrator: wires all stages end-to-end, verified by live email delivery
 
 ### Phase 2: Polish and Resilience
 **Goal**: The email is visually polished, never duplicates articles seen in recent runs, suppresses empty sections, and renders correctly in Gmail including dark mode
@@ -61,6 +68,6 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Core Pipeline | 0/TBD | Not started | - |
+| 1. Core Pipeline | 0/5 | Planned | - |
 | 2. Polish and Resilience | 0/TBD | Not started | - |
 | 3. Automation | 0/TBD | Not started | - |
