@@ -1,0 +1,33 @@
+# .github/workflows/keepalive.yml
+# Prevents GitHub from disabling the newsletter cron after 60 days of inactivity.
+# GitHub's policy: scheduled workflows disabled after 60 days with no repo activity.
+# This workflow uses the GitHub API (not dummy commits) to signal activity.
+#
+# Source: https://github.com/marketplace/actions/keepalive-workflow
+
+name: Keepalive
+
+on:
+  schedule:
+    - cron: '0 13 * * *'
+    # 13:00 UTC — 1 hour after the newsletter job (12:00 UTC).
+    # Offset avoids peak-load collision on the Actions scheduler.
+  workflow_dispatch:
+    # Manual trigger for testing.
+
+permissions:
+  actions: write
+  # v2 uses the GitHub API to signal activity — no dummy commits, no git history pollution.
+  # Only needs actions: write (not contents: write).
+
+jobs:
+  keepalive:
+    name: Keepalive Workflow
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: gautamkrishnar/keepalive-workflow@v2
+        with:
+          time_elapsed: 45
+          # Trigger keepalive when last commit is 45+ days old.
+          # GitHub disables cron at 60 days — this provides a 15-day buffer.
