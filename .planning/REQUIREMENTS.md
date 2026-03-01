@@ -8,8 +8,8 @@
 ### Pipeline
 
 - [ ] **PIPE-01**: System fetches content from all sources once per day and produces a single email output
-- [ ] **PIPE-02**: System filters out any content older than 24 hours from time of run
-- [ ] **PIPE-03**: System caps output at 5 items per source section to keep email scannable
+- [x] **PIPE-02**: System filters out any content older than 24 hours from time of run
+- [x] **PIPE-03**: System caps output at 5 items per source section to keep email scannable
 - [ ] **PIPE-04**: System degrades gracefully per source — a failed source produces an empty section, never blocks the email
 - [ ] **PIPE-05**: System deduplicates content so the same article never appears twice across consecutive runs
 
@@ -25,10 +25,10 @@
 
 ### Summarization
 
-- [ ] **SUMM-01**: System generates a 2-4 sentence summary for each article using Claude Haiku via the Batch API
-- [ ] **SUMM-02**: Every summary includes a distinct "Why it matters" section (1-2 sentences) explaining the non-obvious significance
-- [ ] **SUMM-03**: Each digest item includes the article title, publication date, source name, and direct URL
-- [ ] **SUMM-04**: System handles Claude API failures gracefully (include article title + URL without summary, do not crash)
+- [x] **SUMM-01**: System generates a 2-4 sentence summary for each article using Claude Haiku via the Batch API
+- [x] **SUMM-02**: Every summary includes a distinct "Why it matters" section (1-2 sentences) explaining the non-obvious significance
+- [x] **SUMM-03**: Each digest item includes the article title, publication date, source name, and direct URL
+- [x] **SUMM-04**: System handles Claude API failures gracefully (include article title + URL without summary, do not crash)
 
 ### Email — Rendering
 
@@ -92,8 +92,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | PIPE-01 | Phase 1 | In progress (01-01: foundation) |
-| PIPE-02 | Phase 1 | Pending |
-| PIPE-03 | Phase 1 | Pending |
+| PIPE-02 | Phase 1 | Complete |
+| PIPE-03 | Phase 1 | Complete |
 | PIPE-04 | Phase 1 | In progress (01-01: foundation) |
 | PIPE-05 | Phase 3 | Pending |
 | RSS-01 | Phase 1 | Pending |
@@ -103,10 +103,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | RSS-05 | Phase 1 | In progress (01-01: foundation) |
 | RSS-06 | Phase 1 | Pending |
 | RSS-07 | Phase 1 | Pending |
-| SUMM-01 | Phase 1 | Pending |
-| SUMM-02 | Phase 1 | Pending |
-| SUMM-03 | Phase 1 | Pending |
-| SUMM-04 | Phase 1 | Pending |
+| SUMM-01 | Phase 1 | Complete |
+| SUMM-02 | Phase 1 | Complete |
+| SUMM-03 | Phase 1 | Complete |
+| SUMM-04 | Phase 1 | Complete |
 | EMAIL-01 | Phase 3 | Pending |
 | EMAIL-02 | Phase 3 | Pending |
 | EMAIL-03 | Phase 1 | Pending |
