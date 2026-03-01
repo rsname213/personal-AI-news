@@ -45,7 +45,14 @@ def render_email(articles: list[SummarizedArticle]) -> tuple[str, str]:
 
     template = env.get_template("digest.html.j2")
     raw_html = template.render(sections=sections, date=today)
-    inlined_html = transform(raw_html)  # Inline all CSS for Gmail compatibility
+    # keep_style_tags=True preserves the dark mode @media block in <head>
+    # strip_important=False preserves !important in @media overrides
+    inlined_html = transform(raw_html, keep_style_tags=True, strip_important=False)
+    import re as _re
+    _style_blocks = _re.findall(r'<style[^>]*>(.*?)</style>', inlined_html, _re.DOTALL)
+    _style_size = sum(len(b) for b in _style_blocks)
+    if _style_size > 7000:
+        print(f"[WARN] Style block size {_style_size} chars — approaching 8KB Gmail limit")
 
     # Plain-text fallback
     text_lines = [f"AI Briefing — {today}", "=" * 40]
