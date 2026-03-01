@@ -51,7 +51,7 @@ Plans:
 
 Plans:
 - [x] 02-01-PLAN.md — Deduplication module + orchestrator wiring (PIPE-05)
-- [ ] 02-02-PLAN.md — Wispr Flow email redesign + dark mode + premailer fix (EMAIL-01, EMAIL-02, EMAIL-04, EMAIL-05, EMAIL-06)
+- [x] 02-02-PLAN.md — Wispr Flow email redesign + dark mode + premailer fix (EMAIL-01, EMAIL-02, EMAIL-04, EMAIL-05, EMAIL-06)
 
 ### Phase 3: Automation
 **Goal**: The pipeline runs automatically every morning at 7am ET via GitHub Actions, can be triggered manually for testing, times out if stuck, stays active indefinitely, and uses only GitHub Secrets for all credentials
@@ -66,8 +66,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 03-01-PLAN.md — Newsletter workflow + .gitignore fix + RSS env-var migration (INFRA-01, INFRA-02, INFRA-03, INFRA-05)
-- [ ] 03-02-PLAN.md — Keepalive workflow + end-to-end manual trigger verification (INFRA-04)
+- [x] 03-01-PLAN.md — Newsletter workflow + .gitignore fix + RSS env-var migration (INFRA-01, INFRA-02, INFRA-03, INFRA-05)
+- [x] 03-02-PLAN.md — Keepalive workflow + end-to-end manual trigger verification (INFRA-04)
 
 ## Progress
 
