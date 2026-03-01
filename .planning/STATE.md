@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-03-01T19:29:00Z"
+last_updated: "2026-03-01T19:33:28.100Z"
 progress:
   total_phases: 2
-  completed_phases: 1
-  total_plans: 9
-  completed_plans: 6
+  completed_phases: 2
+  total_plans: 7
+  completed_plans: 7
 ---
 
 # Project State
@@ -50,6 +50,7 @@ Progress: [██████████░░░░░░░░░░] 67% (6/
 | Phase 01-core-pipeline P05 | 1min | 1 tasks | 1 files |
 | Phase 01-core-pipeline P05 | 15min | 2 tasks | 2 files |
 | Phase 02-polish-and-resilience P01 | 2min | 2 tasks | 5 files |
+| Phase 02-polish-and-resilience P02 | 5min | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -82,6 +83,8 @@ Recent decisions affecting current work:
 - [02-01]: UTM_PARAMS set strips utm_source/medium/campaign/term/content; non-UTM params sorted for stable normalized form
 - [02-01]: SEEN_URLS_PATH derived from __file__ so module resolves project root from any working directory
 - [02-01]: 7-day retention window with inclusive cutoff (entries aged exactly 7 days are kept)
+- [Phase 02-polish-and-resilience]: data-premailer=ignore on dark mode style block is sufficient for preservation; keep_style_tags=True adds belt-and-suspenders safety
+- [Phase 02-polish-and-resilience]: Table-based Gmail-safe layout with system font stack (no border-radius, no box-shadow, no flexbox/grid)
 
 ### Pending Todos
 

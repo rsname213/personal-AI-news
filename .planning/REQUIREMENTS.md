@@ -32,12 +32,12 @@
 
 ### Email — Rendering
 
-- [ ] **EMAIL-01**: Email renders correctly in Gmail (inline CSS, table-based layout, no unsupported CSS properties)
-- [ ] **EMAIL-02**: Email is visually designed based on Wispr Flow's aesthetic (wisprflow.ai) — clean, minimal, modern
+- [x] **EMAIL-01**: Email renders correctly in Gmail (inline CSS, table-based layout, no unsupported CSS properties)
+- [x] **EMAIL-02**: Email is visually designed based on Wispr Flow's aesthetic (wisprflow.ai) — clean, minimal, modern
 - [x] **EMAIL-03**: Email has clear section headers per source category (Personal Blogs, WSJ, The Information, Anthropic)
-- [ ] **EMAIL-04**: Email total size stays under 102KB to prevent Gmail clipping
-- [ ] **EMAIL-05**: Email supports dark mode on Apple Mail and Gmail Mobile via `@media (prefers-color-scheme: dark)`
-- [ ] **EMAIL-06**: If all sources in a section return no new content, that section is suppressed (not shown as empty)
+- [x] **EMAIL-04**: Email total size stays under 102KB to prevent Gmail clipping
+- [x] **EMAIL-05**: Email supports dark mode on Apple Mail and Gmail Mobile via `@media (prefers-color-scheme: dark)`
+- [x] **EMAIL-06**: If all sources in a section return no new content, that section is suppressed (not shown as empty)
 
 ### Email — Delivery
 
@@ -107,12 +107,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SUMM-02 | Phase 1 | Complete |
 | SUMM-03 | Phase 1 | Complete |
 | SUMM-04 | Phase 1 | Complete |
-| EMAIL-01 | Phase 3 | Pending |
-| EMAIL-02 | Phase 3 | Pending |
+| EMAIL-01 | Phase 3 | Complete |
+| EMAIL-02 | Phase 3 | Complete |
 | EMAIL-03 | Phase 1 | Complete |
-| EMAIL-04 | Phase 3 | Pending |
-| EMAIL-05 | Phase 3 | Pending |
-| EMAIL-06 | Phase 3 | Pending |
+| EMAIL-04 | Phase 3 | Complete |
+| EMAIL-05 | Phase 3 | Complete |
+| EMAIL-06 | Phase 3 | Complete |
 | DEL-01 | Phase 1 | Complete |
 | DEL-02 | Phase 1 | Complete |
 | DEL-03 | Phase 1 | Complete |
