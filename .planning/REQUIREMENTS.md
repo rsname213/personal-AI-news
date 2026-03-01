@@ -15,13 +15,13 @@
 
 ### Sources — RSS Feeds
 
-- [ ] **RSS-01**: System fetches new posts from all 20 personal bloggers via RSS/Atom feeds
-- [ ] **RSS-02**: System handles Paul Graham's broken official RSS via a community-maintained feed or custom HTML scraper
-- [ ] **RSS-03**: System handles Gwern Branwen's missing RSS via a custom HTML scraper
-- [ ] **RSS-04**: System fetches new posts from Anthropic's official news/blog channel
-- [ ] **RSS-05**: System logs a warning per source when a feed is unavailable, without crashing
-- [ ] **RSS-06**: System fetches top articles from WSJ via public RSS feed (https://feeds.a.wsj.com/rss/RSSWSJD.xml) — headline, teaser, and direct link included; links open paywall-free in the WSJ app
-- [ ] **RSS-07**: System fetches top articles from The Information via subscriber RSS feed (https://www.theinformation.com/feed) — headline, teaser, and direct link included
+- [x] **RSS-01**: System fetches new posts from all 20 personal bloggers via RSS/Atom feeds
+- [x] **RSS-02**: System handles Paul Graham's broken official RSS via a community-maintained feed or custom HTML scraper
+- [x] **RSS-03**: System handles Gwern Branwen's missing RSS via a custom HTML scraper
+- [x] **RSS-04**: System fetches new posts from Anthropic's official news/blog channel
+- [x] **RSS-05**: System logs a warning per source when a feed is unavailable, without crashing
+- [x] **RSS-06**: System fetches top articles from WSJ via public RSS feed (https://feeds.a.wsj.com/rss/RSSWSJD.xml) — headline, teaser, and direct link included; links open paywall-free in the WSJ app
+- [x] **RSS-07**: System fetches top articles from The Information via subscriber RSS feed (https://www.theinformation.com/feed) — headline, teaser, and direct link included
 
 ### Summarization
 
@@ -96,13 +96,13 @@ Which phases cover which requirements. Updated during roadmap creation.
 | PIPE-03 | Phase 1 | Complete |
 | PIPE-04 | Phase 1 | In progress (01-01: foundation) |
 | PIPE-05 | Phase 3 | Pending |
-| RSS-01 | Phase 1 | Pending |
-| RSS-02 | Phase 1 | Pending |
-| RSS-03 | Phase 1 | Pending |
-| RSS-04 | Phase 1 | Pending |
+| RSS-01 | Phase 1 | Complete |
+| RSS-02 | Phase 1 | Complete |
+| RSS-03 | Phase 1 | Complete |
+| RSS-04 | Phase 1 | Complete |
 | RSS-05 | Phase 1 | In progress (01-01: foundation) |
-| RSS-06 | Phase 1 | Pending |
-| RSS-07 | Phase 1 | Pending |
+| RSS-06 | Phase 1 | Complete |
+| RSS-07 | Phase 1 | Complete |
 | SUMM-01 | Phase 1 | Complete |
 | SUMM-02 | Phase 1 | Complete |
 | SUMM-03 | Phase 1 | Complete |
