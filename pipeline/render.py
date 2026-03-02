@@ -55,7 +55,7 @@ def render_email(articles: list[SummarizedArticle]) -> tuple[str, str]:
         print(f"[WARN] Style block size {_style_size} chars — approaching 8KB Gmail limit")
 
     # Plain-text fallback
-    text_lines = [f"AI Briefing — {today}", "=" * 40]
+    text_lines = [f"Neel's AI Briefing — {today}", "=" * 40]
     for category, arts in sections.items():
         text_lines.append(f"\n{category.upper()}")
         text_lines.append("-" * len(category))

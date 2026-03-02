@@ -60,4 +60,4 @@ def send_email(subject: str, html_body: str, text_body: str) -> None:
 def build_subject() -> str:
     """Build the email subject line with today's date (DEL-03)."""
     today = datetime.now().strftime("%B %-d, %Y")
-    return f"AI Briefing \u2014 {today}"
+    return f"Neel's AI Briefing \u2014 {today}"
