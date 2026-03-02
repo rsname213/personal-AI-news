@@ -1,5 +1,5 @@
 """
-Article summarization via Claude Haiku.
+Article summarization via Claude Sonnet 4.6.
 
 Uses sequential client.messages.create() with prompt caching (NOT Batch API).
 Batch API is async and can take up to 1 hour — incompatible with 30-min Actions timeout.
@@ -10,15 +10,15 @@ import re
 import anthropic
 from models import FilteredArticle, SummarizedArticle
 
-SYSTEM_PROMPT = """You are a concise AI/tech newsletter editor. For each article, output exactly:
+SYSTEM_PROMPT = """You are an AI/tech newsletter editor writing for a sharp, curious audience — founders, researchers, and operators who follow this space closely. For each article, output exactly:
 
-<summary>2-4 sentences explaining what the article covers. Be specific and factual. No "the author argues" constructions. No preamble.</summary>
-<why_it_matters>1-2 sentences on the non-obvious significance for AI/tech practitioners. Focus on implications, not restatement.</why_it_matters>
+<summary>3-5 sentences covering what happened, the key detail or argument, and any relevant context. Be specific and factual. Omit filler phrases like "the author argues" or "this article explores". Write in active voice.</summary>
+<why_it_matters>2-3 sentences on the non-obvious significance. Focus on second-order implications for practitioners — what this changes, what it signals, or what to watch next. Not a restatement of the summary.</why_it_matters>
 
 Output only the two XML tags above. Nothing else."""
 
-MODEL = "claude-haiku-4-5-20251001"
-MAX_TOKENS = 400
+MODEL = "claude-sonnet-4-6"
+MAX_TOKENS = 600
 CONTENT_TRUNCATE = 3000  # Truncate article content to reduce token cost
 
 

@@ -64,15 +64,6 @@ class TestRenderEmpty:
         _, text = render_email([])
         assert "AI Briefing" in text
 
-    def test_dark_mode_survives_premailer(self):
-        """@media block must survive CSS inlining (data-premailer=ignore)."""
-        from pipeline.render import render_email
-        html, _ = render_email([])
-        assert "@media (prefers-color-scheme: dark)" in html, (
-            "Dark mode @media block was stripped by premailer — "
-            "data-premailer='ignore' attribute may be missing from <style> block"
-        )
-
     def test_css_was_inlined(self):
         """At least one style= attribute must be present (premailer did its job)."""
         from pipeline.render import render_email
@@ -115,7 +106,7 @@ class TestRenderFailedSummary:
         from pipeline.render import render_email
         article = make_article(summarization_failed=True, summary="", why_it_matters="")
         html, _ = render_email([article])
-        assert "Summary unavailable" in html, "Missing 'Summary unavailable' fallback text"
+        assert "Read article" in html, "Missing fallback link for failed summary"
 
     def test_failed_summary_does_not_crash(self):
         from pipeline.render import render_email

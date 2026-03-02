@@ -3,7 +3,7 @@ AI Newsletter Pipeline Orchestrator
 
 Runs the complete pipeline:
   1. Fetch articles from all sources (fail-soft per source)
-  2. Filter to recent articles (25h window, 5 per source cap)
+  2. Filter to recent articles (7-day window, 5 per source cap)
   3. Summarize each article with Claude Haiku
   4. Render HTML + plain text email
   5. Send via Gmail SMTP
@@ -24,7 +24,7 @@ except ImportError:
 from fetchers.rss import fetch_all as fetch_rss_all
 from fetchers.paul_graham import fetch as fetch_paul_graham
 from fetchers.gwern import fetch as fetch_gwern
-from fetchers.anthropic_blog import fetch as fetch_anthropic
+from fetchers.blog_scrapers import fetch_boz, fetch_calv, fetch_maxhodak
 
 from pipeline.filter import filter_articles
 from pipeline.deduplicate import (
@@ -53,10 +53,12 @@ def collect_all() -> list:
     Any source that raises returns [] and logs a warning — never blocks email delivery.
     """
     FETCHERS = [
-        (fetch_rss_all, "RSS feeds (20 sources)"),
+        (fetch_rss_all, "RSS feeds"),
         (fetch_paul_graham, "Paul Graham"),
         (fetch_gwern, "Gwern Branwen"),
-        (fetch_anthropic, "Anthropic Blog"),
+        (fetch_boz, "Andrew Bosworth"),
+        (fetch_calv, "Calvin French-Owen"),
+        (fetch_maxhodak, "Max Hodak"),
     ]
 
     all_articles = []
@@ -107,7 +109,7 @@ def main() -> None:
         # Continue — send the email even if empty (subject + date still useful for monitoring)
 
     # Stage 3: Summarize
-    print(f"\n[Stage 3] Summarizing {len(filtered)} articles with Claude Haiku...")
+    print(f"\n[Stage 3] Summarizing {len(filtered)} articles with Claude Sonnet 4.6...")
     summarized = summarize_articles(filtered)
 
     # Stage 4: Render

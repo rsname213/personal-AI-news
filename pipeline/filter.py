@@ -1,26 +1,26 @@
 """
-Article filtering: 25-hour recency window with smart per-category caps.
+Article filtering: 7-day recency window with smart per-category caps.
 
 Rules:
-  Personal Blogs — max 1 article per blogger, max 5 bloggers total
-  All other sources (WSJ, The Information, Anthropic) — max 5 per source
+  Personal Blogs — max 1 article per blogger, max 4 bloggers total
+  All other sources (WSJ, TechCrunch, The Information) — max 2 per source
 
-Uses 25 hours (not 24) to absorb GitHub Actions cron scheduling delays
-of up to ~1 hour without silently dropping recent articles.
+Uses 169 hours (7d + 1h) to cover the full weekly digest window, with
+the +1h absorbing GitHub Actions cron scheduling delays.
 """
 from collections import defaultdict
 from datetime import datetime, timezone, timedelta
 from models import RawArticle, FilteredArticle
 
 PERSONAL_BLOGS_CATEGORY = "Personal Blogs"
-BLOG_SECTION_CAP = 5   # max distinct bloggers in the digest
+BLOG_SECTION_CAP = 4   # max distinct bloggers in the digest (~5-min read target)
 BLOG_AUTHOR_CAP = 1    # max articles per individual blogger
-DEFAULT_SOURCE_CAP = 5  # max articles for non-blog sources (WSJ, The Info, Anthropic)
+DEFAULT_SOURCE_CAP = 2  # max articles per news source (WSJ, TechCrunch, The Information)
 
 
 def filter_articles(
     articles: list[RawArticle],
-    hours: int = 25,
+    hours: int = 169,
 ) -> list[FilteredArticle]:
     """
     Returns only recent articles, applying category-aware caps.
@@ -30,7 +30,7 @@ def filter_articles(
 
     Args:
         articles: All raw articles from all fetchers.
-        hours: Recency window in hours. Default 25 (absorbs Actions delay).
+        hours: Recency window in hours. Default 169 (7 days + 1h Actions buffer).
 
     Returns:
         FilteredArticle list, sorted by recency (newest first).
@@ -67,7 +67,7 @@ def filter_articles(
     total_filtered = len(filtered)
     print(
         f"[OK] Filter: {total_raw} raw -> {total_filtered} kept "
-        f"(blogs: {blog_section_count} bloggers, 1 each; "
-        f"other sources: up to {DEFAULT_SOURCE_CAP} each)"
+        f"(blogs: {blog_section_count}/{BLOG_SECTION_CAP} bloggers; "
+        f"news: up to {DEFAULT_SOURCE_CAP} per source)"
     )
     return filtered

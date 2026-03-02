@@ -24,7 +24,7 @@ GWERN_BLOG_INDEX = "https://gwern.net/blog/index"
 
 def fetch() -> list[RawArticle]:
     """Scrape gwern.net/blog/index and return recent RawArticle items."""
-    cutoff = datetime.now(timezone.utc) - timedelta(hours=25)
+    cutoff = datetime.now(timezone.utc) - timedelta(days=7, hours=1)
 
     try:
         response = httpx.get(
@@ -87,6 +87,6 @@ def fetch() -> list[RawArticle]:
     if len(articles) == 0:
         print(
             "[WARN] Gwern Branwen: returned 0 articles"
-            " — HTML structure may have changed or no posts in last 25h"
+            " — HTML structure may have changed or no posts in last 7 days"
         )
     return articles

@@ -4,7 +4,7 @@ Generic RSS/Atom fetcher for the AI Newsletter pipeline.
 Provides:
   - fetch_feed(feed_url, source_name, source_category) -> list[RawArticle]
   - fetch_all() -> list[RawArticle]
-  - FEED_URLS: config dict of all standard sources (18 personal blogs + WSJ + The Information)
+  - FEED_URLS: config dict of all standard sources (18 personal blogs + WSJ)
 
 Feed URLs are MEDIUM confidence — personal bloggers may have moved platforms.
 Fix a bad URL directly in FEED_URLS without touching any code logic.
@@ -18,32 +18,35 @@ import feedparser
 from models import RawArticle
 
 # ---------------------------------------------------------------------------
-# Source config — 18 personal blogs + 2 news sources = 20 total
+# Source config — 18 personal blogs + 1 news source = 19 total
 # Format: { "Display Name": ("feed_url", "source_category") }
 # ---------------------------------------------------------------------------
 FEED_URLS: dict[str, tuple[str, str]] = {
     # Personal Blogs
-    "Andrew Bosworth": ("https://boz.com/feed", "Personal Blogs"),
+    # Removed (no working RSS): Andrew Bosworth, Ava Huang, Brie Wolfson,
+    #   Calvin French-Owen, Graham Duncan (last post 2018), James Somers (last post 2009),
+    #   Max Hodak — all return 404/403 with no accessible alternative feed.
     "Ben Kuhn": ("https://www.benkuhn.net/rss/", "Personal Blogs"),
-    "Ava Huang": ("https://avahu.substack.com/feed", "Personal Blogs"),
-    "Brie Wolfson": ("https://www.briewolfson.com/feed", "Personal Blogs"),
-    "Calvin French-Owen": ("https://calv.info/rss.xml", "Personal Blogs"),
     "Holden Karnofsky": ("https://www.cold-takes.com/rss/", "Personal Blogs"),
-    "Graham Duncan": ("https://grahambduncan.substack.com/feed", "Personal Blogs"),
     "Henrik Karlsson": ("https://www.henrikkarlsson.xyz/feed", "Personal Blogs"),
     "Justin Meiners": ("https://jmeiners.com/feed.xml", "Personal Blogs"),
-    "James Somers": ("https://jsomers.net/feed.xml", "Personal Blogs"),
     "Kevin Kwok": ("https://kwokchain.com/feed/", "Personal Blogs"),
     "Tyler Cowen": ("https://marginalrevolution.com/feed", "Personal Blogs"),
-    "Max Hodak": ("https://maxhodak.substack.com/feed", "Personal Blogs"),
-    "Nabeel Qureshi": ("https://nabeelqu.substack.com/feed", "Personal Blogs"),
-    "Nadia Asparouhova": ("https://nadia.xyz/rss.xml", "Personal Blogs"),
+    "Nabeel Qureshi": ("https://nabeelqu.co/rss", "Personal Blogs"),       # was nabeelqu.substack.com
+    "Nadia Asparouhova": ("https://nadia.xyz/feed", "Personal Blogs"),     # was nadia.xyz/rss.xml
     "Sam Altman": ("https://blog.samaltman.com/posts.atom", "Personal Blogs"),
-    "Scott Alexander": ("https://astralcodexten.substack.com/feed/", "Personal Blogs"),
-    "Tom Tunguz": ("https://tomtunguz.com/feed/", "Personal Blogs"),
+    "Scott Alexander": ("https://www.astralcodexten.com/feed", "Personal Blogs"),  # was substack URL
+    "Tom Tunguz": ("https://tomtunguz.com/index.xml", "Personal Blogs"),   # was /feed/
     # News Sources
-    "WSJ": (os.environ.get("WSJ_RSS_URL", "https://feeds.a.wsj.com/rss/RSSWSJD.xml"), "WSJ"),
-    "The Information": (os.environ.get("THE_INFO_RSS_URL", "https://www.theinformation.com/feed"), "The Information"),
+    "WSJ": (
+        os.environ.get("WSJ_RSS_URL", "https://feeds.content.dowjones.io/public/rss/RSSWSJD"),
+        "WSJ",
+    ),
+    "TechCrunch AI": ("https://techcrunch.com/category/artificial-intelligence/feed/", "TechCrunch"),
+    "The Information": (
+        os.environ.get("THE_INFO_RSS_URL", "https://www.theinformation.com/feed"),
+        "The Information",
+    ),
 }
 
 
@@ -51,23 +54,14 @@ def fetch_feed(feed_url: str, source_name: str, source_category: str) -> list[Ra
     """
     Fetch a single RSS/Atom feed and return recent articles as RawArticle objects.
 
-    - Uses a 25-hour cutoff window (not 24h) to absorb GitHub Actions scheduling delays.
+    - Uses a 169-hour (7d + 1h) cutoff window to cover the full weekly digest window.
     - Entries without a published date are skipped.
     - Any exception is caught, logged as [WARN], and returns [].
     """
-    cutoff = datetime.now(timezone.utc) - timedelta(hours=25)
+    cutoff = datetime.now(timezone.utc) - timedelta(days=7, hours=1)
 
     try:
         feed = feedparser.parse(feed_url)
-
-        # Special handling for The Information — warn if feed appears empty or broken
-        if source_name == "The Information":
-            if getattr(feed, "bozo", False) or len(feed.entries) == 0:
-                print(
-                    "[WARN] The Information: feed may require subscriber authentication"
-                    " — treating as empty for Phase 1"
-                )
-                return []
 
         articles: list[RawArticle] = []
         for entry in feed.entries:
@@ -77,7 +71,7 @@ def fetch_feed(feed_url: str, source_name: str, source_category: str) -> list[Ra
 
             published_at = datetime(*entry.published_parsed[:6], tzinfo=timezone.utc)
 
-            # Recency filter: 25-hour window
+            # Recency filter: 7-day window
             if published_at < cutoff:
                 continue
 

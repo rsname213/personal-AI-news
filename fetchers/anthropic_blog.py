@@ -49,7 +49,7 @@ def fetch() -> list[RawArticle]:
 
 def _scrape_anthropic_news() -> list[RawArticle]:
     """Scrape anthropic.com/news as a fallback source."""
-    cutoff = datetime.now(timezone.utc) - timedelta(hours=25)
+    cutoff = datetime.now(timezone.utc) - timedelta(days=7, hours=1)
 
     try:
         response = httpx.get(
@@ -97,7 +97,7 @@ def _scrape_anthropic_news() -> list[RawArticle]:
             # Date not found — use now as conservative fallback so article passes filter
             published_at = datetime.now(timezone.utc)
 
-        # Apply 25-hour recency filter
+        # Apply 7-day recency filter
         if published_at < cutoff:
             continue
 
@@ -112,7 +112,7 @@ def _scrape_anthropic_news() -> list[RawArticle]:
                 id=hashlib.md5(href.encode()).hexdigest(),
                 url=href,
                 title=title,
-                content_text="",
+                content_text=card_text,  # teaser text scraped from card — better than empty
                 published_at=published_at,
                 source_name="Anthropic",
                 source_category="Anthropic",

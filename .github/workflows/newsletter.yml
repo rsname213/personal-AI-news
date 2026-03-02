@@ -1,5 +1,5 @@
 # .github/workflows/newsletter.yml
-# Runs the AI newsletter pipeline daily at 12:00 UTC (7am EST / 8am EDT).
+# Runs the AI newsletter pipeline weekly on Mondays at 12:00 UTC (7am EST / 8am EDT).
 # Manual trigger available via workflow_dispatch (Actions tab or gh CLI).
 #
 # Sources:
@@ -11,11 +11,11 @@ name: AI Newsletter
 
 on:
   schedule:
-    - cron: '0 12 * * *'
-    # 12:00 UTC = 7am EST (Nov–Mar) / 8am EDT (Mar–Nov).
+    - cron: '0 12 * * 1'
+    # Mondays at 12:00 UTC = 7am EST (Nov–Mar) / 8am EDT (Mar–Nov).
     # GitHub Actions cron runs in UTC only — no timezone parameter.
-    # Cron may fire up to 60 min late under peak load; the 25h recency window in
-    # filter_articles() already absorbs this delay (see STATE.md decision [01-03]).
+    # Cron may fire up to 60 min late under peak load; the 169h (7d + 1h) recency
+    # window in filter_articles() already absorbs this delay.
   workflow_dispatch:
     # Adds a "Run workflow" button in the Actions tab. No inputs required.
 
@@ -56,10 +56,8 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-          # RSS URLs stored as env vars per INFRA-05 — not hardcoded in Python.
-          # fetchers/rss.py reads these via os.environ.get() with hardcoded fallbacks.
-          WSJ_RSS_URL: https://feeds.a.wsj.com/rss/RSSWSJD.xml
-          THE_INFO_RSS_URL: https://www.theinformation.com/feed
+          # WSJ uses feeds.content.dowjones.io (feeds.a.wsj.com is defunct).
+          WSJ_RSS_URL: https://feeds.content.dowjones.io/public/rss/RSSWSJD
         run: python orchestrator.py
 
       - name: Commit updated .seen_urls
