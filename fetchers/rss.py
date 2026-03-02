@@ -46,10 +46,8 @@ FEED_URLS: dict[str, tuple[str, str]] = {
         "WSJ",
     ),
     "TechCrunch AI": ("https://techcrunch.com/category/artificial-intelligence/feed/", "TechCrunch"),
-    "The Information": (
-        os.environ.get("THE_INFO_RSS_URL", "https://www.theinformation.com/feed"),
-        "The Information",
-    ),
+    # The Information: moved to fetchers/the_information.py (Google News RSS)
+    # — Cloudflare blocks direct RSS access.
 }
 
 

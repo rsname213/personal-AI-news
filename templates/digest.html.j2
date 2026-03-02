@@ -1,102 +1,105 @@
-{# templates/digest.html.j2 — Swiss modernist / neo-brutalist theme #}
-{# Palette: #F2E96B yellow + #1B2196 cobalt — two-color only, no gradients #}
+{# templates/digest.html.j2 — Cream & Maroon, single-column, mobile-first #}
+{# Palette: cream #FAF8F4 bg · maroon #7B1A27 accents · #1A0A0F body text #}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Web fonts — ignored by premailer; loads in Gmail, Apple Mail, webmail -->
+  <!-- Web fonts — data-premailer="ignore" survives CSS inlining -->
   <style data-premailer="ignore">
     @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500&display=swap');
+
+    @media only screen and (max-width: 620px) {
+      .outer-td    { padding: 16px 12px !important; }
+      .header-title { font-size: 48px !important; }
+      .article-td  { padding: 16px 0 20px 0 !important; }
+      .article-title { font-size: 20px !important; }
+    }
   </style>
 
   <style>
     body {
       margin: 0; padding: 0;
-      background-color: #F2E96B;
+      background-color: #FAF8F4;
       font-family: 'Barlow', 'Helvetica Neue', Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
     }
-    .outer-td { padding: 32px 16px; background-color: #F2E96B; }
-    .content-td { background-color: #F2E96B; padding: 0; }
+    .outer-td  { padding: 28px 20px; background-color: #FAF8F4; }
+    .inner-td  { background-color: #FAF8F4; padding: 0; }
 
     /* ── Header ──────────────────────────────────────────────────── */
     .header-td {
       padding: 32px 0 20px 0;
-      border-bottom: 2px solid #1B2196;
+      border-bottom: 2px solid #7B1A27;
     }
     .header-eyebrow {
       font-family: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
       font-size: 10px; font-weight: 700;
       letter-spacing: 0.22em; text-transform: uppercase;
-      color: #1B2196; margin: 0 0 4px 0;
+      color: #7B1A27; margin: 0 0 5px 0;
     }
     .header-title {
       font-family: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
-      font-size: 72px; font-weight: 800;
+      font-size: 64px; font-weight: 800;
       letter-spacing: -0.02em; text-transform: uppercase;
-      color: #1B2196; line-height: 0.88;
-      margin: 0 0 18px 0;
+      color: #7B1A27; line-height: 0.88;
+      margin: 0 0 16px 0;
     }
     .header-date {
       font-family: 'Barlow', 'Helvetica Neue', Arial, sans-serif;
       font-size: 11px; font-weight: 500;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: #1B2196; margin: 0;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: #5C3A3F; margin: 0;
     }
 
     /* ── Section label ───────────────────────────────────────────── */
-    .section-td {
-      padding: 24px 0 10px 0;
-    }
+    .section-td { padding: 24px 0 8px 0; }
     .section-badge {
       font-family: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
       font-size: 10px; font-weight: 700;
       letter-spacing: 0.18em; text-transform: uppercase;
-      background-color: #1B2196; color: #F2E96B;
+      background-color: #7B1A27; color: #FAF8F4;
       padding: 3px 9px; border-radius: 3px;
       display: inline-block; line-height: 1.5;
     }
 
-    /* ── Article cards ───────────────────────────────────────────── */
+    /* ── Article card ────────────────────────────────────────────── */
     .article-td {
-      vertical-align: top;
-      padding: 14px 0 18px 0;
-      border-top: 1px solid #1B2196;
+      padding: 18px 0 24px 0;
+      border-top: 1px solid #E8D5D8;
     }
     .source-badge {
       font-family: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
       font-size: 9px; font-weight: 700;
       letter-spacing: 0.14em; text-transform: uppercase;
-      background-color: #1B2196; color: #F2E96B;
-      padding: 2px 6px; border-radius: 3px;
+      background-color: #7B1A27; color: #FAF8F4;
+      padding: 2px 7px; border-radius: 3px;
       display: inline; line-height: 1.6;
     }
     .article-date {
       font-family: 'Barlow', 'Helvetica Neue', Arial, sans-serif;
       font-size: 10px; font-weight: 500;
-      color: #1B2196; letter-spacing: 0.05em;
+      color: #5C3A3F; letter-spacing: 0.05em;
     }
     .article-title {
       font-family: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
-      font-size: 19px; font-weight: 700;
-      color: #1B2196; text-decoration: none;
+      font-size: 22px; font-weight: 700;
+      color: #7B1A27; text-decoration: none;
       display: block; line-height: 1.18;
-      margin: 7px 0 10px 0;
+      margin: 9px 0 12px 0;
     }
     .article-summary {
       font-family: 'Barlow', 'Helvetica Neue', Arial, sans-serif;
-      font-size: 13px; font-weight: 400;
-      color: #1B2196; line-height: 1.62;
-      margin: 0 0 9px 0;
+      font-size: 15px; font-weight: 400;
+      color: #1A0A0F; line-height: 1.65;
+      margin: 0 0 12px 0;
     }
     .article-why {
       font-family: 'Barlow', 'Helvetica Neue', Arial, sans-serif;
-      font-size: 12px; font-weight: 400;
-      color: #1B2196; line-height: 1.55;
-      margin: 0; padding-left: 9px;
-      border-left: 2px solid #1B2196;
+      font-size: 13px; font-weight: 400;
+      color: #1A0A0F; line-height: 1.55;
+      margin: 0; padding-left: 10px;
+      border-left: 2px solid #7B1A27;
     }
     .why-label {
       font-family: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
@@ -105,19 +108,19 @@
     }
     .article-no-summary {
       font-family: 'Barlow', 'Helvetica Neue', Arial, sans-serif;
-      font-size: 12px; color: #1B2196; font-style: italic; margin: 0;
+      font-size: 13px; color: #5C3A3F; font-style: italic; margin: 0;
     }
 
     /* ── Footer ──────────────────────────────────────────────────── */
     .footer-td {
-      border-top: 2px solid #1B2196;
-      padding: 16px 0 32px 0;
+      border-top: 2px solid #7B1A27;
+      padding: 16px 0 28px 0;
     }
     .footer {
       font-family: 'Barlow', 'Helvetica Neue', Arial, sans-serif;
       font-size: 10px; font-weight: 500;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: #1B2196; margin: 0;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: #5C3A3F; margin: 0;
     }
   </style>
 </head>
@@ -127,9 +130,9 @@
     <td class="outer-td" align="center">
       <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;">
         <tr>
-          <td class="content-td">
+          <td class="inner-td">
 
-            <!-- ── HEADER ───────────────────────────────────────── -->
+            <!-- ── HEADER ──────────────────────────────────────────── -->
             <table width="100%" cellpadding="0" cellspacing="0" border="0">
               <tr>
                 <td class="header-td">
@@ -140,7 +143,7 @@
               </tr>
             </table>
 
-            <!-- ── SECTIONS ─────────────────────────────────────── -->
+            <!-- ── SECTIONS ────────────────────────────────────────── -->
             {% for category, articles in sections.items() %}
             {% if articles %}
 
@@ -152,36 +155,17 @@
               </tr>
             </table>
 
-            <!-- 2-column article grid -->
-            {% for i in range(0, articles|length, 2) %}
-            {% set a = articles[i] %}
+            {% for a in articles %}
             <table width="100%" cellpadding="0" cellspacing="0" border="0">
               <tr>
-                <!-- Left column -->
-                <td class="article-td" width="285">
+                <td class="article-td">
                   <span class="source-badge">{{ a.source_name }}</span>&nbsp;&nbsp;<span class="article-date">{{ a.published_at.strftime('%b %-d') }}</span>
                   <a href="{{ a.url }}" class="article-title">{{ a.title }}</a>
                   {% if not a.summarization_failed %}
                   <p class="article-summary">{{ a.summary }}</p>
                   <p class="article-why"><span class="why-label">Why it matters —</span> {{ a.why_it_matters }}</p>
                   {% else %}
-                  <p class="article-no-summary"><a href="{{ a.url }}" style="color:#1B2196;">Read article →</a></p>
-                  {% endif %}
-                </td>
-                <!-- Gutter -->
-                <td width="24" style="min-width:24px;">&nbsp;</td>
-                <!-- Right column -->
-                <td class="article-td" width="285">
-                  {% if i + 1 < articles|length %}
-                  {% set b = articles[i + 1] %}
-                  <span class="source-badge">{{ b.source_name }}</span>&nbsp;&nbsp;<span class="article-date">{{ b.published_at.strftime('%b %-d') }}</span>
-                  <a href="{{ b.url }}" class="article-title">{{ b.title }}</a>
-                  {% if not b.summarization_failed %}
-                  <p class="article-summary">{{ b.summary }}</p>
-                  <p class="article-why"><span class="why-label">Why it matters —</span> {{ b.why_it_matters }}</p>
-                  {% else %}
-                  <p class="article-no-summary"><a href="{{ b.url }}" style="color:#1B2196;">Read article →</a></p>
-                  {% endif %}
+                  <p class="article-no-summary"><a href="{{ a.url }}" style="color:#7B1A27;">Read article →</a></p>
                   {% endif %}
                 </td>
               </tr>
@@ -191,8 +175,8 @@
             {% endif %}
             {% endfor %}
 
-            <!-- ── FOOTER ───────────────────────────────────────── -->
-            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:24px;">
+            <!-- ── FOOTER ──────────────────────────────────────────── -->
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:20px;">
               <tr>
                 <td class="footer-td">
                   <p class="footer">Generated {{ date }}&nbsp;&middot;&nbsp;Personal AI Briefing</p>

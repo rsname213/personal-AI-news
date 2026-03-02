@@ -24,6 +24,7 @@ except ImportError:
 from fetchers.rss import fetch_all as fetch_rss_all
 from fetchers.paul_graham import fetch as fetch_paul_graham
 from fetchers.gwern import fetch as fetch_gwern
+from fetchers.the_information import fetch as fetch_the_information
 from fetchers.blog_scrapers import fetch_boz, fetch_calv, fetch_maxhodak
 
 from pipeline.filter import filter_articles
@@ -56,6 +57,7 @@ def collect_all() -> list:
         (fetch_rss_all, "RSS feeds"),
         (fetch_paul_graham, "Paul Graham"),
         (fetch_gwern, "Gwern Branwen"),
+        (fetch_the_information, "The Information"),
         (fetch_boz, "Andrew Bosworth"),
         (fetch_calv, "Calvin French-Owen"),
         (fetch_maxhodak, "Max Hodak"),

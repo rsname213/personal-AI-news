@@ -17,7 +17,7 @@ _TEMPLATE_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "templa
 env = Environment(loader=FileSystemLoader(_TEMPLATE_DIR), autoescape=True)
 
 # Section display order — controls the order of sections in the email
-SECTION_ORDER = ["Personal Blogs", "WSJ", "The Information", "Anthropic"]
+SECTION_ORDER = ["Personal Blogs", "WSJ", "TechCrunch", "The Information", "Anthropic"]
 
 
 def render_email(articles: list[SummarizedArticle]) -> tuple[str, str]:

@@ -16,6 +16,8 @@ on:
     # GitHub Actions cron runs in UTC only — no timezone parameter.
     # Cron may fire up to 60 min late under peak load; the 169h (7d + 1h) recency
     # window in filter_articles() already absorbs this delay.
+    - cron: '0 12 3 3 *'
+    # TODO: remove after 2026-03-03 — one-time Tuesday test run
   workflow_dispatch:
     # Adds a "Run workflow" button in the Actions tab. No inputs required.
 
