@@ -23,10 +23,12 @@ from models import RawArticle
 # ---------------------------------------------------------------------------
 FEED_URLS: dict[str, tuple[str, str]] = {
     # Personal Blogs
-    # Removed (no working RSS): Andrew Bosworth, Ava Huang, Brie Wolfson,
-    #   Calvin French-Owen, Graham Duncan (last post 2018), James Somers (last post 2009),
-    #   Max Hodak — all return 404/403 with no accessible alternative feed.
+    # Removed (no working RSS): Andrew Bosworth, Ava Huang, Graham Duncan (last post 2018),
+    #   Calvin French-Owen, Max Hodak — handled via HTML scrapers in fetchers/blog_scrapers.py
+    # Ava Huang: all known URLs (avahu.me, ava.substack.com) fail DNS/Cloudflare
+    # Graham Duncan: Cloudflare-blocked + inactive since 2018
     "Ben Kuhn": ("https://www.benkuhn.net/rss/", "Personal Blogs"),
+    "Brie Wolfson": ("https://koolaidfactory.com/feed", "Personal Blogs"),  # Kool-Aid Factory
     "Holden Karnofsky": ("https://www.cold-takes.com/rss/", "Personal Blogs"),
     "Henrik Karlsson": ("https://www.henrikkarlsson.xyz/feed", "Personal Blogs"),
     "Justin Meiners": ("https://jmeiners.com/feed.xml", "Personal Blogs"),
@@ -36,6 +38,7 @@ FEED_URLS: dict[str, tuple[str, str]] = {
     "Nadia Asparouhova": ("https://nadia.xyz/feed", "Personal Blogs"),     # was nadia.xyz/rss.xml
     "Sam Altman": ("https://blog.samaltman.com/posts.atom", "Personal Blogs"),
     "Scott Alexander": ("https://www.astralcodexten.com/feed", "Personal Blogs"),  # was substack URL
+    "James Somers": ("https://jsomers.net/blog/feed", "Personal Blogs"),   # was jsomers.net/feed.xml (stale 2009)
     "Tom Tunguz": ("https://tomtunguz.com/index.xml", "Personal Blogs"),   # was /feed/
     # News Sources
     "WSJ": (
